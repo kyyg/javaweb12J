@@ -8,6 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>reservationComplete.jsp</title>
   <jsp:include page="/include/bs4.jsp" />
+  	<style>
+ 	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap');
+ 	 .container, .table{
+ 	 font-family: 'Noto Serif KR', serif;
+ 	 }
+	</style>
 </head>
 <body>
 <jsp:include page="/include/header.jsp" />
@@ -19,6 +25,18 @@
 				<tr class="text-center p-5 m-5">
 					<td colspan="2">결제가 완료되었습니다.</td>
 					<hr/>
+				</tr>
+				<tr>
+				<td>
+					<pre>
+					구매자 : ${mid}
+					주문번호 : ${reNum}
+					예약날짜 : ${reDate}
+					예약전시 : ${title}
+					인원 : ${peopleNum}
+					총금액 : ${totalPrice}
+					</pre>
+				</td>
 				</tr>
 				<tr>
 					<td class="mb-5 pb-5"></td>

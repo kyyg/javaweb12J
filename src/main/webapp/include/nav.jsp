@@ -11,6 +11,10 @@
 .a{
 	text-decoration:none;
 }
+.nav-item{
+position: -webkit-sticky;
+z-index:10;
+}
 #mainnav {
 	position: -webkit-sticky;
 	position: sticky;
@@ -123,6 +127,7 @@ nav li {
 
   	
   	<!-- 메인메뉴 -->
+<span>
 <nav id="mainnav" class="navbar-light bg-white">
   <ul class="nav justify-content-center">
 	 <li class="nav-item dropdown">
@@ -149,9 +154,10 @@ nav li {
 	    <div class="nav-link  dropbtn">SERVICE</div>
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item" href="${pageContext.request.contextPath}/BoardList.bo">NOTICE</a>
-	      <a class="dropdown-item" href="#">Q&A</a>
-	      <a class="dropdown-item" href="#">PLACE</a>
+	      <a class="dropdown-item" href="${ctp}/AskBoardList.ask">Q&A</a>
+	      <a class="dropdown-item" href="${ctp}/ExhibitionVisit.ex">VISIT</a>
 	   </div>
 	</ul>
 </nav>
+</span>
 

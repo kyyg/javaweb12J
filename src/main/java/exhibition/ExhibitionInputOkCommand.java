@@ -38,8 +38,7 @@ public class ExhibitionInputOkCommand implements ExhibitionInterface {
 		String author = multipartRequest.getParameter("author")==null ? "" : multipartRequest.getParameter("author");
 		String startDate = multipartRequest.getParameter("startDate")==null ? "" : multipartRequest.getParameter("startDate");
 		String endDate = multipartRequest.getParameter("endDate")==null ? "" : multipartRequest.getParameter("endDate");
-		int adultPrice = multipartRequest.getParameter("adultPrice") ==null? 0 : Integer.parseInt(multipartRequest.getParameter("adultPrice"));
-		int childPrice = multipartRequest.getParameter("childPrice") ==null? 0 : Integer.parseInt(multipartRequest.getParameter("childPrice"));
+		int price = multipartRequest.getParameter("price") ==null? 0 : Integer.parseInt(multipartRequest.getParameter("price"));
 		String place = multipartRequest.getParameter("place")==null ? "" : multipartRequest.getParameter("place");
   		
 		
@@ -49,8 +48,7 @@ public class ExhibitionInputOkCommand implements ExhibitionInterface {
 		vo.setAuthor(author);
 		vo.setStartDate(startDate);
 		vo.setEndDate(endDate);
-		vo.setAdultPrice(adultPrice);
-		vo.setChildPrice(childPrice);
+		vo.setPrice(price);
 		vo.setPlace(place);
 		vo.setPoster(filesystemName1);
 		vo.setContent(filesystemName2);

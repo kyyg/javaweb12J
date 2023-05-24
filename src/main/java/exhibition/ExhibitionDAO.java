@@ -36,8 +36,7 @@ public class ExhibitionDAO {
 				vo.setAuthor(rs.getString("author"));
 				vo.setStartDate(rs.getString("startDate"));
 				vo.setEndDate(rs.getString("endDate"));
-				vo.setAdultPrice(rs.getInt("adultPrice"));
-				vo.setChildPrice(rs.getInt("childPrice"));
+				vo.setPrice(rs.getInt("price"));
 				vo.setPlace(rs.getString("place"));
 				vo.setPoster(rs.getString("poster"));
 				vo.setContent(rs.getString("content"));
@@ -88,8 +87,7 @@ public class ExhibitionDAO {
 				vo.setAuthor(rs.getString("author"));
 				vo.setStartDate(rs.getString("startDate"));
 				vo.setEndDate(rs.getString("endDate"));
-				vo.setAdultPrice(rs.getInt("adultPrice"));
-				vo.setChildPrice(rs.getInt("childPrice"));
+				vo.setPrice(rs.getInt("price"));
 				vo.setPlace(rs.getString("place"));
 				vo.setPoster(rs.getString("poster"));
 				vo.setContent(rs.getString("content"));
@@ -109,17 +107,16 @@ public class ExhibitionDAO {
 	public int setExhibitionInputOk(ExhibitionVO vo) {
 		int res = 0;
 		try {
-			sql = "insert into exhibition values(default,?,?,?,?,?,?,?,?,?,default,default)";
+			sql = "insert into exhibition values(default,?,?,?,?,?,?,?,?,default,default)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getAuthor());
 			pstmt.setString(3, vo.getStartDate());
 			pstmt.setString(4, vo.getEndDate());
-			pstmt.setInt(5, vo.getAdultPrice());
-			pstmt.setInt(6, vo.getChildPrice());
-			pstmt.setString(7, vo.getPlace());
-			pstmt.setString(8, vo.getPoster());
-			pstmt.setString(9, vo.getContent());
+			pstmt.setInt(5, vo.getPrice());
+			pstmt.setString(6, vo.getPlace());
+			pstmt.setString(7, vo.getPoster());
+			pstmt.setString(8, vo.getContent());
 			pstmt.executeUpdate();
 			res = 1;			
 		} catch (SQLException e) {
@@ -128,6 +125,20 @@ public class ExhibitionDAO {
 			getConn.pstmtClose();
 		}
 		return res;
+	}
+
+	// 예약 카운트 증가시키기
+	public void setReCntPlus(int idx) {
+		try {
+			sql = "update exhibition set reCnt=reCnt+1 where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			getConn.pstmtClose();
+		}
 	}
 
 		

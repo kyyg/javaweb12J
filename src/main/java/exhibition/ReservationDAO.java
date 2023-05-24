@@ -20,20 +20,19 @@ public class ReservationDAO {
 
 	
 	// 예약하기
-	public int setReservation(int exIdx, String mid, String reNum, String reDate, int childNum, int adultNum, int totalPrice, int reCnt, String confirmDate, String title) {
+	public int setReservation(int exIdx, String mid, String reNum, String reDate, int peopleNum, int totalPrice, String confirmDate, String title) {
 		int res=0;
 		try {
-			sql = "insert into reservation values (default,?,?,?,?,default,?,?,?,?,default,?)";
+			sql = "insert into reservation values (default,?,?,?,?,default,?,?,?,default,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, reNum);
 			pstmt.setInt(2, exIdx);
 			pstmt.setString(3, title);
 			pstmt.setString(4, mid);
 			pstmt.setString(5, reDate);
-			pstmt.setInt(6, adultNum);
-			pstmt.setInt(7, childNum);
-			pstmt.setInt(8, totalPrice);
-			pstmt.setString(9, confirmDate);
+			pstmt.setInt(6, peopleNum);
+			pstmt.setInt(7, totalPrice);
+			pstmt.setString(8, confirmDate);
 			
 			pstmt.executeUpdate();	
 			res = 1;
@@ -63,8 +62,7 @@ public class ReservationDAO {
 				vo.setMid(rs.getString("mid"));
 				vo.setwDate(rs.getString("wDate"));
 				vo.setReDate(rs.getString("reDate"));
-				vo.setAdultNum(rs.getInt("adultNum"));
-				vo.setChildNum(rs.getInt("childNum"));
+				vo.setPeopleNum(rs.getInt("peopleNum"));
 				vo.setTotalPrice(rs.getInt("totalPrice"));
 				vo.setConfirm(rs.getString("confirm"));
 				vo.setConfirmDate(rs.getString("confirmDate"));	
@@ -96,8 +94,7 @@ public class ReservationDAO {
 				vo.setMid(rs.getString("mid"));
 				vo.setwDate(rs.getString("wDate"));
 				vo.setReDate(rs.getString("reDate"));
-				vo.setAdultNum(rs.getInt("adultNum"));
-				vo.setChildNum(rs.getInt("childNum"));
+				vo.setPeopleNum(rs.getInt("peopleNum"));
 				vo.setTotalPrice(rs.getInt("totalPrice"));
 				vo.setConfirm(rs.getString("confirm"));
 				vo.setConfirmDate(rs.getString("confirmDate"));	

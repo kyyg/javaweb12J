@@ -38,14 +38,13 @@
 <p><br/></p>
 <div class="container text-center text-align:center">
 	<h3 class="text-center mb-4">나의 예약현황</h3>
-	  <table class="table table-bordered table-hover mt-0" style="width:1000px; font-size:12px">
+	  <table class="table table-borderless table-hover" style="font-size:12px">
 	  	<tr class="table-dark text-dark text-center">
 	  		<th>번호</th>
 	  		<th>결제날짜</th>
 	  		<th>전시</th>
 	  		<th>예약날짜</th>
-	  		<th>소인</th>
-	  		<th>대인</th>
+	  		<th>인원</th>
 	  		<th>결제금액</th>
 	  		<th>사용여부</th>
 	  		<th>리뷰</th>
@@ -57,8 +56,7 @@
 				<td>${fn:substring(vo.wDate,0,19)}</td>	
 				<td>${vo.title}</td>	
 				<td>${vo.reDate}</td>	
-				<td>${vo.childNum}</td>	
-				<td>${vo.adultNum}</td>	
+				<td>${vo.peopleNum}</td>	
 				<td>${vo.totalPrice}</td>	
 				<td>${vo.confirm}</td>	
 				<c:if test="${vo.confirm == 'OK'}">
@@ -74,6 +72,9 @@
 			</tr>	   
  		 </c:forEach>
 	  </table>
+	  <div class="container text-center">
+	  	<input type="button" onclick="${ctp}/MemberMain.mem" value="이전화면으로" class="btn btn-light">
+	  </div>
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp" />

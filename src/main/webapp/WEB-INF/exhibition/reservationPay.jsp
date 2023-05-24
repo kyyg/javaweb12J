@@ -15,6 +15,16 @@
   }
   
   </script>
+  	<style>
+  	th{
+  	background-color:#eee;
+  	}
+  	
+ 	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap');
+ 	 *{
+ 	 font-family: 'Noto Serif KR', serif;
+ 	 }
+	</style>
 </head>
 <body>
 <jsp:include page="/include/header.jsp" />
@@ -22,67 +32,58 @@
 <div class="container">
   <form name="myform" method="post" action="${ctp}/ReservationPayOk.ex">
 	<h4 class="text-center mb-5">결제화면</h4>
-
-	
 	<table class="table table-bordered">
 		<tr class="text-left">
 			<th colspan="2 m-0 p-0" style="background-color:#eee">고객정보</th>
 		</tr>
 		<tr>
-			<td>아이디</td>
+			<th>아이디</th>
 			<td><span id="mid" name="mid">${vo.mid}</span></td>
 		</tr>
 		<tr>
-			<td>성명</td>
-			<td><input type="text" name="name" id="name" value="${vo.name}"/></td>
+			<th>성명</th>
+			<td><input type="text" name="name" id="name" value="${vo.name}" style="border:0"/></td>
 		</tr>
 		<tr>
-			<td>전화번호</td>
-			<td><input type="text" name="name" id="name" value="${vo.tel}"/></td>
+			<th>전화번호</th>
+			<td><input type="text" name="tel" id="tel" value="${vo.tel}" style="border:0"/></td>
 		</tr>
 		<tr>
-			<td>이메일</td>
-			<td><input type="text" name="name" id="name" value="${vo.email}"/></td>
+			<th>이메일</th>
+			<td><input type="text" name="email" id="email" value="${vo.email}"style="border:0"/></td>
 		</tr>
 		</table>
-
-		
 		<table class="table table-bordered mt-5">
 		<tr class="text-left">
-			<th colspan="3 m-0 p-0" style="background-color:#eee">예약 정보</th>
+			<th colspan="4 m-0 p-0" style="background-color:#eee">예약 정보</th>
 		</tr>
 		<tr>
-			<td>예약 전시</td>
-			<td colspan="2"><span id="title" name="title" value="${vo2.title}" style="font-size:15px">${vo2.title}</span></td>
+			<th>예약 전시</th>
+			<td colspan="3"><span id="title" name="title" value="${title}" style="font-size:15px">${title}</span></td>
 		</tr>
 		<tr>
-			<td>예약 날짜</td>
-			<td colspan="2"><span id="reDate" name="reDate" value="${reDate}">${reDate}</span></td>
+			<th>예약 날짜</th>
+			<td colspan="3"><span id="reDate" name="reDate" value="${reDate}">${reDate}</span></td>
 		</tr>
 		<tr>
-			<td>소인</td>
-			<td><span id="childNum" name="childNum" value="${childNum}">${childNum}</span></td>
-			<td class="text-right"><span id="childPrice" name="childPrice" value="">${vo2.childPrice}원</span></td>
+			<th>인원</th>
+			<td><span id="poepleNum" name="poepleNum" value="">${peopleNum}</span></td>
+			<th>금액</th>
+			<td class="text-right"><span id="price" name="price" value="${price}">${price}원</span></td>
 		</tr>
-		<tr>
-			<td>대인</td>
-			<td><span id="adultNum" name="adultNum" value="${adultNum}">${adultNum}</span></td>
-			<td class="text-right"><span id="adultPrice" name="adultPrice" value="">${vo2.adultPrice}원</span></td>
-		</tr>
-		<tr>
-			<td>총 결제 금액</td>
-			<td colspan="2" class="text-right"><span id="totalPrice" name="totalPrice" value=""><b>${totalPrice}원</b></span></td>
+			<th>총 결제 금액</th>
+			<td colspan="3" class="text-right"><span id="totalPrice" name="totalPrice" value="${totalPrice}"><b>${totalPrice}원</b></span></td>
 		</tr>
 			<input type="hidden" id="exIdx" name="exIdx" value="${exIdx}">
-			<input type="hidden" id="title" name="title" value="${vo2.title}">
+			<input type="hidden" id="title" name="title" value="${title}">
 			<input type="hidden" id="reDate" name="reDate" value="${reDate}">
-			<input type="hidden" id="childNum" name="childNum" value="${childNum}">
-			<input type="hidden" id="adultNum" name="adultNum" value="${adultNum}">
+			<input type="hidden" id="price" name="price" value="${price}">
+			<input type="hidden" id="peopleNum" name="peopleNum" value="${peopleNum}">
 			<input type="hidden" id="totalPrice" name="totalPrice" value="${totalPrice}">
 	</table>
+		<input type="button" value="결제하기" onclick="fCheck()" class="btn btn-light form-control"/>
 </form>
 
-		<input type="button" value="결제하기" onclick="fCheck()" class="btn btn-light form-control"/>
 
 
 </div>

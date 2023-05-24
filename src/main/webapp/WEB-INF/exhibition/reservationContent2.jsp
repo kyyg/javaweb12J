@@ -24,7 +24,7 @@
 	  	} 
 	  	let str='';
 	  	str+='<div class="mt-2" style="width:100%">';
-	  	str+='<h5 class="p-3 text-right" name="totalPrice" id="totalPrice">결제 금액 : <b>'+totalPrice+"</b>원</h5>";
+	  	str+='<h5 class="p-3 text-right">결제 금액 : <b>'+totalPrice+"</b>원</h5>";
 	  	str+='</div>';
 	  	$("#totalPrice").html(str);
 	  	myform.totalPrice.value=totalPrice;
@@ -41,7 +41,7 @@
   			str+="<table id='options"+options[0]+"' width='100%' class=' table table-borderless pb-0 mb-0'>"
   			str+="<tr>"
   			str+="<td class='text-left'>"
-  			str+=" [입장권]&nbsp;"
+  			str+=" [입장권]&nbsp;"+options[2]
   			str+="</td>"
   			str+="<td class='text-right'>"
 				str+= '<span style="width:5px"><input type="number" name="peopleNum" id="peopleNum'+options[0]+'" onchange="numCal('+options[0]+')" value="1" size="1" style="border:0px"><span>';
@@ -57,25 +57,31 @@
   	
 
   	
- 	function deleteOption(idx){
+  	function deleteOption(idx){
   		$("#options"+idx).remove();
   		TotalPriceCal();
   	}
   	
+  	function numCal(idx) {
+	    let peopleNum = $("#peopleNum" + idx).val();
+	    let optionPrice = Number($("#optionPrice" + idx).text());
+	    let totalOptionPrice = peopleNum * optionPrice;
+	    $("#optionPrice" + optionId).text(totalOptionPrice);
+	    TotalPriceCal();
+  	}
+  	
   	function fCheck(){
+  		/* 
+  		myform.reDate.value=$("#reDate").val();
+  		myform.childNum.value= $("#peopleNum1").val();
+  		myform.adultNum.value= $("#peopleNum2").val();
+  		alert($("#peopleNum1").val() + "," + $("#peopleNum2").val());
+  		 */
   		myform.submit();
   	} 
-  	
 	</script>
-	
-	<style>
- 	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap');
- 	 *{
- 	 font-family: 'Noto Serif KR', serif;
- 	 }
-	</style>
-	</head>
 <body>
+<p><br/></p>
 <jsp:include page="/include/header.jsp" /> 
 <div class="container-fluid" style="width:70%">
 	<div class="row mt-2">
@@ -112,7 +118,8 @@
 						<td>
 							<select name="option" id="option"  class="form-control">
 								<option value="0">옵션 선택</option>
-									<option value="1/${vo.price}">통합 입장권 ${vo.price}원</option>
+									<option value="1/${vo.childPrice}/소인">소인 ${vo.childPrice}원</option>
+									<option value="2/${vo.adultPrice}/대인">대인 ${vo.adultPrice}원</option>
 							</select>
 						</td>
 					</tr>
@@ -124,13 +131,16 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><hr/><h3 class="btn btn-light form-control btn-lg pt-3" style="height:70px" onclick="fCheck()">결제하기</h3></td>
+						<td colspan="2"><h3 class="btn btn-light form-control btn-lg pt-3" style="height:70px" onclick="fCheck()">결제하기</h3></td>
 					</tr>
 				</table>
 				<input type="hidden" name="productIdx" value="${vo.idx}"/>
 				
-				<input type="hidden" name="peopleNum" id="peopleNum" value="1"/>
-				<input type="hidden" name="price" id="price" value="${vo.price}"/>
+				<input type="hidden" name="childNum" id="childNum" value="0"/>
+				<input type="hidden" name="optionPrices" id="optionPrices1" value="${vo.childPrice}"/>
+			
+				<input type="hidden" name="adultNum" id="adultNum"  value="0"/>
+				<input type="hidden" name="optionPrices" id="optionPrices2" value="${vo.adultPrice}"/>
 				
 				<input type="hidden" name="reDate" />
 				<input type="hidden" name="totalPrice" />
@@ -140,26 +150,13 @@
 	</div>
  
  
-<div class="container mt-5">
-	<table class="table table-borderless">
-		<tr>
-			<td class="table">
-			<hr/>					
-			- 한 예매 건에 대한 부분 발권은 불가합니다. 같은 일자로 한 번에 관람하실 예정이 아니신 경우, 개별 건으로 예매 부탁드립니다. <br/>
-			- 본 전시는 일자 지정 전시로, 온라인에서 사전에 예매한 후 입장 가능하며 예매시 지정하신 일자에만 관람하실 수 있습니다.<br/>
-			- 전시장 혼잡도에 따라 웨이팅이 발생될 수 있으며, 웨이팅의 경우 현장 대기 방식이 아닌 알림톡 발송 시스템입니다<br/>
-			- 예매자는 본 예매 상세페이지의 모든 내용을 숙지 및 동의한 것으로 간주합니다.<br/>
-			- 안내 미숙지로 인한 책임은 예매자 본인에게 있으며, 이로 인한 당일 취소, 변경, 환불은 불가합니다.<br/>
-			- 예약한 일자의 하루 전까지만 취소 및 환불이 가능합니다.<br/>
-			- 전시장 내부가 어둡고, 사운드의 음량이 커 폐소공포증이 있거나, 유아, 어린이, 임산부, 노약자 등에 해당하는 분들은 예매 및 입장에 유의 부탁 드립니다.<br/>
-			<hr/>				
-			</td>
-		</tr>
-		<tr>
-		  <td><img src="${ctp}/images/${vo.content}" width="100%" height="100%" class="text-center" /></td>
-		</tr>
-	</table>
-</div>
+	<div class="container mt-5">
+		<table class="table table-bordered">
+			<tr>
+			  <td><img src="${ctp}/images/${vo.content}" width="1000px" height="1300px" class="text-center" /></td>
+			</tr>
+		</table>
+	</div>
 	
 </div>
 <p><br/></p>

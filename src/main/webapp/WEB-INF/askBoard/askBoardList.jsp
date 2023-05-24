@@ -12,13 +12,6 @@
   <script>
     'use strict';
     
-    if(${pag} > ${totPage}) location.href="${ctp}/BoardList.bo?pag=${totPage}&pageSize=${pageSize}";
-    
-    function pageCheck() {
-    	let pageSize = document.getElementById("pageSize").value;
-    	location.href = "${ctp}/BoardList.bo?pag=${pag}&pageSize="+pageSize;
-    }
-    
     function searchCheck() {
     	let searchString = $("#searchString").val();
     	
@@ -31,48 +24,44 @@
     	}
     }
   </script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap');
-  *{
-  font-family: 'Noto Serif KR', serif;
-  }
-</style>
-  
+  <style>
+ 	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap');
+ 	 *{
+ 	 font-family: 'Noto Serif KR', serif;
+ 	 }
+ 	 
+	</style>
 </head>
 <body>
 <jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">NOTICE</h2>
-  <table class="table table-borderless">
-    <tr>
-      <td><c:if test="${sLevel == 0}"><a href="${ctp}/BoardInput.bo" class="btn btn- btn-sm">작성</a></c:if></td>
-      <td class="text-right">
-        <!-- 한페이지 분량처리 -->
-        <select name="pageSize" id="pageSize" onchange="pageCheck()">
-          <option <c:if test="${pageSize == 3}">selected</c:if>>3</option>
-          <option <c:if test="${pageSize == 5}">selected</c:if>>5</option>
-          <option <c:if test="${pageSize == 10}">selected</c:if>>10</option>
-          <option <c:if test="${pageSize == 15}">selected</c:if>>15</option>
-          <option <c:if test="${pageSize == 20}">selected</c:if>>20</option>
-        </select> 건
-      </td>
-    </tr>
-  </table>
+  <h2 class="text-center">ASK</h2>
+	<table class="table table-borderless">
+		<tr class="mb-3 text-right">
+			<td class="mb-5"><c:if test="${sLevel <= 1}"><a href="${ctp}/AskBoardInput.ask" class="btn btn- btn-sm">글쓰기</a></c:if></td>
+		</tr>
+	</table>
   <table class="table table-hover text-center">
     <tr class="table-dark text-dark">
       <th>번호</th>
       <th>제목</th>
       <th>작성자</th>
-      <th>작성일</th>
+      <th>날짜일</th>
       <th>조회수</th>
     </tr>
     <c:forEach var="vo" items="${vos}" varStatus="st">
       <tr>
         <td>${curScrStartNo}</td>
         <td class="text-center">
-	          <a href="${ctp}/BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a>
+          <c:if test="${vo.openSw == 'OK' || sLevel == 0 || sMid == vo.mid}">
+	          <a href="${ctp}/AskBoardContent.ask?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a>
 	          <c:if test="${vo.hour_diff <= 24}"><span class="badge badge-info">NEW</span></c:if>
+          </c:if>
+          <c:if test="${vo.openSw != 'OK' && sLevel != 0 && sMid != vo.mid}">
+          	${vo.title}
+          </c:if>
+          <c:if test="${vo.replyCount != 0}">(${vo.replyCount})</c:if>
         </td>
         <td>${vo.nickName}</td>
         <td>
@@ -89,20 +78,6 @@
     </c:forEach>
     <tr><td colspan="6" class="m-0 p-0"></td></tr>
   </table>
-  
-  <!-- 블록 페이징 처리 -->
-  <div class="text-center m-4">
-	  <ul class="pagination justify-content-center pagination-sm">
-	    <c:if test="${pag > 1}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=1">첫페이지</a></li></c:if>
-	    <c:if test="${curBlock > 0}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=${(curBlock-1)*blockSize + 1}">이전블록</a></li></c:if>
-	    <c:forEach var="i" begin="${curBlock*blockSize + 1}" end="${curBlock*blockSize + blockSize}" varStatus="st">
-	      <c:if test="${i <= totPage && i == pag}"><li class="page-item active"><a class="page-link text-white bg-secondary border-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=${i}">${i}</a></li></c:if>
-	      <c:if test="${i <= totPage && i != pag}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=${i}">${i}</a></li></c:if>
-	    </c:forEach>
-	    <c:if test="${curBlock < lastBlock}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=${(curBlock+1)*blockSize + 1}">다음블록</a></li></c:if>
-	    <c:if test="${pag < totPage}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=${totPage}">마지막페이지</a></li></c:if>
-	  </ul>
-  </div>
   
   <!-- 검색기 처리 -->
   <div class="container text-center">

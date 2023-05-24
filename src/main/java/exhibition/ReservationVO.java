@@ -9,8 +9,7 @@ public class ReservationVO {
 	private String title;
 	private String wDate;
 	private String reDate;
-	private int adultNum;
-	private int childNum;
+	private int peopleNum;
 	private int totalPrice;
 	private String confirm;
 	private String confirmDate;
@@ -58,17 +57,11 @@ public class ReservationVO {
 	public void setReDate(String reDate) {
 		this.reDate = reDate;
 	}
-	public int getAdultNum() {
-		return adultNum;
+	public int getPeopleNum() {
+		return peopleNum;
 	}
-	public void setAdultNum(int adultNum) {
-		this.adultNum = adultNum;
-	}
-	public int getChildNum() {
-		return childNum;
-	}
-	public void setChildNum(int childNum) {
-		this.childNum = childNum;
+	public void setPeopleNum(int peopleNum) {
+		this.peopleNum = peopleNum;
 	}
 	public int getTotalPrice() {
 		return totalPrice;
@@ -97,11 +90,10 @@ public class ReservationVO {
 	@Override
 	public String toString() {
 		return "ReservationVO [idx=" + idx + ", reNum=" + reNum + ", exIdx=" + exIdx + ", mid=" + mid + ", title=" + title
-				+ ", wDate=" + wDate + ", reDate=" + reDate + ", adultNum=" + adultNum + ", childNum=" + childNum
-				+ ", totalPrice=" + totalPrice + ", confirm=" + confirm + ", confirmDate=" + confirmDate + ", reCnt=" + reCnt
-				+ "]";
+				+ ", wDate=" + wDate + ", reDate=" + reDate + ", peopleNum=" + peopleNum + ", totalPrice=" + totalPrice
+				+ ", confirm=" + confirm + ", confirmDate=" + confirmDate + ", reCnt=" + reCnt + "]";
 	}
 	
-	
+
 	
 }

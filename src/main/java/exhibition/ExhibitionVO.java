@@ -8,8 +8,7 @@ public class ExhibitionVO {
 	private String author;
 	private String startDate;
 	private String endDate;
-	private int adultPrice;
-	private int childPrice;
+	private int price;
 	private String place;
 	private String poster;
 	private String content;
@@ -46,17 +45,11 @@ public class ExhibitionVO {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public int getAdultPrice() {
-		return adultPrice;
+	public int getPrice() {
+		return price;
 	}
-	public void setAdultPrice(int adultPrice) {
-		this.adultPrice = adultPrice;
-	}
-	public int getChildPrice() {
-		return childPrice;
-	}
-	public void setChildPrice(int childPrice) {
-		this.childPrice = childPrice;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public String getPlace() {
 		return place;
@@ -91,11 +84,11 @@ public class ExhibitionVO {
 	@Override
 	public String toString() {
 		return "ExhibitionVO [idx=" + idx + ", title=" + title + ", author=" + author + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", adultPrice=" + adultPrice + ", childPrice=" + childPrice + ", place=" + place
-				+ ", poster=" + poster + ", content=" + content + ", part=" + part + ", ReCnt=" + ReCnt + "]";
+				+ ", endDate=" + endDate + ", price=" + price + ", place=" + place + ", poster=" + poster + ", content="
+				+ content + ", part=" + part + ", ReCnt=" + ReCnt + "]";
 	}
 	
-	
+
 	
 	
 }

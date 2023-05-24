@@ -20,10 +20,9 @@ public class ReservationPayOkCommand implements ExhibitionInterface {
 		int exIdx = request.getParameter("exIdx")==null ? 0 : Integer.parseInt(request.getParameter("exIdx"));
 		String reDate = request.getParameter("reDate")==null ? "" : request.getParameter("reDate");
 		String title = request.getParameter("title")==null ? "" : request.getParameter("title");
-		int childNum = request.getParameter("childNum")==null ? 0 : Integer.parseInt(request.getParameter("childNum"));
-	  int adultNum = request.getParameter("adultNum")==null ? 0 : Integer.parseInt(request.getParameter("adultNum"));
+		int peopleNum = request.getParameter("peopleNum")==null ? 0 : Integer.parseInt(request.getParameter("peopleNum"));
 		int totalPrice = request.getParameter("totalPrice")==null ? 0 : Integer.parseInt(request.getParameter("totalPrice"));
-
+		System.out.println("ReservationPayOkCommand1 : " + exIdx + "/" + reDate + "/" +peopleNum+ "/" +totalPrice+ "/" +title);
 		
 		
 		// 개인 예약번호 
@@ -34,27 +33,29 @@ public class ReservationPayOkCommand implements ExhibitionInterface {
 		ExhibitionDAO dao = new ExhibitionDAO();
 		ExhibitionVO vo = dao.getReservationContent(exIdx);
 		
-		int reCnt = vo.getReCnt() + 1;
-		String reNum = strNow + "-" + reCnt;
+		int reCnt = vo.getReCnt();
+		int reCntPlus = reCnt + 1;
+		String reNum = strNow + "-" + exIdx + "-0" + reCntPlus;
 		
-		vo.setReCnt(1);
+		//vo.setReCnt(reCntPlus); 예약카운트 증가
+		dao.setReCntPlus(vo.getIdx());
 		
 		String confirmDate = vo.getEndDate().substring(0,10);
 
 		
-		
 		ReservationDAO dao2 = new ReservationDAO();
-		int res = dao2.setReservation(exIdx,mid,reNum,reDate,childNum,adultNum,totalPrice,reCnt,confirmDate,title);
+		int res = dao2.setReservation(exIdx,mid,reNum,reDate,peopleNum,totalPrice,confirmDate,title);
 		
-		request.setAttribute("msg", "결제가 완료되었습니다.");
 		request.setAttribute("mid", mid);
-		request.setAttribute("title", title);
-		request.setAttribute("childNum", childNum);
-		request.setAttribute("adultNum", adultNum);
-		request.setAttribute("totalPrice", totalPrice);
+		request.setAttribute("reNum", reNum);
 		request.setAttribute("reDate", reDate);
+		request.setAttribute("title", title);
+		request.setAttribute("peopleNum", peopleNum);
+		request.setAttribute("totalPrice", totalPrice);
 		
 		if(res == 1) {
+			System.out.println("ReservationPayOkCommand2 : " + exIdx + "/" + reDate + "/" +peopleNum+ "/" +totalPrice+ "/" +title);
+			request.setAttribute("msg", "결제가 완료되었습니다.");
 			request.setAttribute("url", request.getContextPath()+"/ReservationComplete.ex");
 		}
 		else {

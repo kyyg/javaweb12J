@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import member.MemberDAO;
 import member.MemberVO;
 
-public class ReservationPayCommand implements ExhibitionInterface {
+public class ReservationPayCommand2 implements ExhibitionInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -18,9 +18,20 @@ public class ReservationPayCommand implements ExhibitionInterface {
 		int exIdx = request.getParameter("productIdx")==null ? 0 : Integer.parseInt(request.getParameter("productIdx"));
 		String reDate = request.getParameter("reDate")==null ? "" : request.getParameter("reDate");
 		String title = request.getParameter("title")==null ? "" : request.getParameter("title");
-	
-		int price = request.getParameter("price")==null ? 0 :Integer.parseInt(request.getParameter("price"));
-	  int peopleNum = request.getParameter("peopleNum")==null ? 0 :Integer.parseInt(request.getParameter("peopleNum"));
+		
+		/*
+		String childNum = request.getParameter("childNum")==null ? "" : request.getParameter("childNum");
+		String adultNum = request.getParameter("adultNum")==null ? "" : request.getParameter("adultNum");
+		*/
+		
+//	  int childNum = request.getParameter("childNum")==null ? 0 :Integer.parseInt(request.getParameter("childNum"));
+//	  int adultNum = request.getParameter("adultNum")==null ? 0 :Integer.parseInt(request.getParameter("adultNum"));
+		
+		String[] peopleNums = request.getParameterValues("peopleNum");
+		System.out.println("peopleNum : " + peopleNums[0]);
+		System.out.println("peopleNum : " + peopleNums[1]);
+		 
+		
 		int totalPrice = request.getParameter("totalPrice")==null ? 0 : Integer.parseInt(request.getParameter("totalPrice"));
 						
 		HttpSession session = request.getSession();
@@ -36,12 +47,17 @@ public class ReservationPayCommand implements ExhibitionInterface {
 		request.setAttribute("vo2", vo2);
 		request.setAttribute("exIdx", exIdx);
 		request.setAttribute("reDate", reDate);
-		request.setAttribute("title", title);
-		request.setAttribute("price", price);
-		request.setAttribute("peopleNum", peopleNum);
-		request.setAttribute("totalPrice", totalPrice);
+		/*
+		 * request.setAttribute("peopleNum0", peopleNums[0]);
+		 * request.setAttribute("peopleNum1", peopleNums[1]);
+		 */
 		
-		System.out.println("ReservationPayCommand : " + exIdx + "/" + reDate + "/" +peopleNum+ "/" +totalPrice+ "/" +title);
+//		request.setAttribute("childNum", childNum);
+//		request.setAttribute("adultNum", adultNum);
+		request.setAttribute("totalPrice", totalPrice);
+		request.setAttribute("title", title);
+		
+		
 	}
 
 }

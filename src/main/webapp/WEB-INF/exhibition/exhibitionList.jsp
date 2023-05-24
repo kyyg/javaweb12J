@@ -11,12 +11,23 @@
   <title>EXHIBITION</title>
   <jsp:include page="/include/bs4.jsp" />
   <style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap');
+  
+  	*{
+  	font-family: 'Noto Serif KR', serif;
+  	}
+  
     th {
       background-color:#eee;
       text-align: center;
+      font-family: 'Noto Serif KR', serif;
     }
     .exList{
     width: 500px;
+    }
+    
+    .img:hover{
+    	opacity:80%;
     }
   </style>
   
@@ -57,8 +68,8 @@
       <td>
         <select name="pageSize" id="pageSize" onchange="pageCheck()">
           <option <c:if test="${pageSize == 3}">selected</c:if>>3</option>
-          <option <c:if test="${pageSize == 5}">selected</c:if>>5</option>
-<%--           <option <c:if test="${pageSize == 10}">selected</c:if>>10</option>
+<%--          <option <c:if test="${pageSize == 5}">selected</c:if>>5</option>
+           <option <c:if test="${pageSize == 10}">selected</c:if>>10</option>
           <option <c:if test="${pageSize == 15}">selected</c:if>>15</option>
           <option <c:if test="${pageSize == 20}">selected</c:if>>20</option> --%>
         </select>
@@ -71,8 +82,8 @@
 	  <table class="table table-borderd">
 	  	<tr>
   		<c:forEach var="vo" items="${vos}" varStatus="st">  
-  			<td>
-					<a href="${ctp}/ReservationContent.ex?idx=${vo.idx}"><img src="${ctp}/images/${vo.poster}" width="600px" height="500px"/></a> <br/>
+  			<td class="img">
+					<a href="${ctp}/ReservationContent.ex?idx=${vo.idx}"><img src="${ctp}/images/${vo.poster}" width="600px" height="600px"/></a> <br/>
 					<a href="${ctp}/ReservationContent.ex?idx=${vo.idx}"><a href="${ctp}/ReservationContent.ex?idx=${vo.idx}">${vo.title}</a><br/>
 			  	<span>전시기간 : ${fn:substring(vo.startDate,0,10)} ~ ${fn:substring(vo.endDate,0,10)}</span>&nbsp;&nbsp;&nbsp;<br/>
 				  <span class="badge badge-secondary text-right text-light">${vo.place}</span><br/>

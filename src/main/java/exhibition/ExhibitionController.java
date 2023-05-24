@@ -61,6 +61,9 @@ public class ExhibitionController extends HttpServlet {
 			command.execute(request, response);
 			return;
 		}
+		else if(com.equals("/ExhibitionVisit")) {
+			viewPage += "/exhibitionVisit.jsp";
+		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
