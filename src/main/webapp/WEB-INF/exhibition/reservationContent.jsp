@@ -16,55 +16,60 @@
 	<script>
 		let totalPrice=0;
 		
-  	function TotalPriceCal(){
-	  	totalPrice=0;
-	   
-	  	for(let i=0;i<document.getElementsByName("optionPrices").length; i++) {
-	  		totalPrice+=Number(document.getElementsByName("optionPrices")[i].innerHTML);
-	  	} 
-	  	let str='';
-	  	str+='<div class="mt-2" style="width:100%">';
-	  	str+='<h5 class="p-3 text-right" name="totalPrice" id="totalPrice">결제 금액 : <b>'+totalPrice+"</b>원</h5>";
-	  	str+='</div>';
-	  	$("#totalPrice").html(str);
-	  	myform.totalPrice.value=totalPrice;
-  	}
+	function TotalPriceCal(){
+  	totalPrice=0;
+   
+  	for(let i=0;i<document.getElementsByName("optionPrices").length; i++) {
+  		totalPrice+=Number(document.getElementsByName("optionPrices")[i].innerHTML);
+  	} 
+  	let str='';
+  	str+='<div class="mt-2" style="width:100%">';
+  	str+='<h5 class="p-3 text-right" name="totalPrice" id="totalPrice">결제 금액 : <b>'+totalPrice+"</b>원</h5>";
+  	str+='</div>';
+  	$("#totalPrice").html(str);
+  	myform.totalPrice.value=totalPrice;
+	}
 		 
-  	
-  	$(function(){
-  		$("#option").change(function(){
-  			let str = document.getElementById("orders").innerHTML;
-  			let option = $(this).val();
-  			let options = option.split("/");
-  			let price = options[1];
+	$(function(){
+		$("#option").change(function(){
+			let str = document.getElementById("orders").innerHTML;
+			let option = $(this).val();
+			let options = option.split("/");
+			let price = options[1];
 
-  			str+="<table id='options"+options[0]+"' width='100%' class=' table table-borderless pb-0 mb-0'>"
-  			str+="<tr>"
-  			str+="<td class='text-left'>"
-  			str+=" [입장권]&nbsp;"
-  			str+="</td>"
-  			str+="<td class='text-right'>"
-				str+= '<span style="width:5px"><input type="number" name="peopleNum" id="peopleNum'+options[0]+'" onchange="numCal('+options[0]+')" value="1" size="1" style="border:0px"><span>';
-  			str+="<span name='optionPrices' id='optionPrice"+options[0]+"' style='width:30%'>"+price+"</span>원&nbsp;"
-  			str+='<div class="btn btn-white text-dark borderless" onclick="deleteOption('+options[0]+')"><b>X</b></div>'
-  			str+="</td>"
-  			str+="</tr>"
-  			str+="</table>"
-  			$("#orders").html(str);
-  			TotalPriceCal();
-  		});
-  	});
-  	
-
+			str+="<table id='options"+options[0]+"' width='100%' class=' table table-borderless pb-0 mb-0'>"
+			str+="<tr>"
+			str+="<td class='text-left'>"
+			str+=" [입장권]&nbsp;"
+			str+="</td>"
+			str+="<td class='text-right'>"
+			str+= '<span style="width:5px"><input type="number" name="peopleNum" id="peopleNum'+options[0]+'" onchange="numCal('+options[0]+')" value="1" maxValue="2" style="border:0px"><span>';
+			str+="<span name='optionPrices' id='optionPrice"+options[0]+"' style='width:30%'>"+price+"</span>원&nbsp;"
+			str+='<div class="btn btn-white text-dark borderless" onclick="deleteOption('+options[0]+')"><b>X</b></div>'
+			str+="</td>"
+			str+="</tr>"
+			str+="</table>"
+			$("#orders").html(str);
+			TotalPriceCal();
+		});
+	});
+	
+	function numCal(optionId) {
+		  let peopleNum = $("#peopleNum" + optionId).val();
+		  let optionPrice = Number($("#optionPrice" + optionId).text());
+		  let totalOptionPrice = peopleNum * optionPrice;
+		  $("#optionPrice" + optionId).text(totalOptionPrice);
+		  TotalPriceCal();
+		}
   	
  	function deleteOption(idx){
-  		$("#options"+idx).remove();
-  		TotalPriceCal();
-  	}
+		$("#options"+idx).remove();
+		TotalPriceCal();
+  }
   	
-  	function fCheck(){
-  		myform.submit();
-  	} 
+	function fCheck(){
+		myform.submit();
+	} 
   	
 	</script>
 	
