@@ -41,7 +41,6 @@ public class ReservationPayCommand implements ExhibitionInterface {
 		request.setAttribute("peopleNum", peopleNum);
 		request.setAttribute("totalPrice", totalPrice);
 		
-		System.out.println("ReservationPayCommand : " + exIdx + "/" + reDate + "/" +peopleNum+ "/" +totalPrice+ "/" +title);
 	}
 
 }

@@ -131,32 +131,34 @@ nav li {
 <nav id="mainnav" class="navbar-light bg-white">
   <ul class="nav justify-content-center">
 	 <li class="nav-item dropdown">
-	    <div class="nav-link  dropbtn" >EXHIBITION</div>
+	    <div class="nav-link dropbtn mr-3" >EXHIBITION</div>
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item" href="${pageContext.request.contextPath}/ExhibitionList.ex">OPEN</a>
 		    <a class="dropdown-item" href="#">CLOSE</a>
+		    <a class="dropdown-item" href="${ctp}/ReviewList.rv">REVIEW</a>
 	   	</div>
 	  </li>
-	  <li class="nav-item dropdown">
-	    <div class="nav-link  dropbtn" href="#">REVIEW</div>
-	    <div class="dropdown-menu dropdown-content">
-	      <a class="dropdown-item" href="#">REVIEW</a>
-	   </div>
-	   </li>
 	   <li class="nav-item dropdown">
-	    <div class="nav-link  dropbtn">SHOP</div>
+	    <div class="nav-link dropbtn ml-3 mr-2">SHOP</div>
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item" href="#">GIFT</a>
 		    <a class="dropdown-item" href="#">ETC</a>
 	   </div>
 	  </li>
 	  <li class="nav-item dropdown">
-	    <div class="nav-link  dropbtn">SERVICE</div>
+	    <div class="nav-link dropbtn ml-3 mr-2">PLACE</div>
+	    <div class="dropdown-menu dropdown-content">
+	      <a class="dropdown-item" href="${ctp}/ExhibitionVisit.ex">ABOUT US</a>
+	      <a class="dropdown-item" href="${ctp}/ExhibitionVisit.ex">VISIT</a>
+	   </div>
+	   </li>
+	  <li class="nav-item dropdown">
+	    <div class="nav-link dropbtn ml-3">SERVICE</div>
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item" href="${pageContext.request.contextPath}/BoardList.bo">NOTICE</a>
 	      <a class="dropdown-item" href="${ctp}/AskBoardList.ask">Q&A</a>
-	      <a class="dropdown-item" href="${ctp}/ExhibitionVisit.ex">VISIT</a>
 	   </div>
+	   </li>
 	</ul>
 </nav>
 </span>

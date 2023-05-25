@@ -44,12 +44,8 @@
 			<td><input type="date" name="endDate" id="endDate" class="form-control" /></td>
 		</tr>
 		<tr>
-			<td>대인 요금</td>
-			<td><input type="number" name="adultPrice" id="adultPrice" class="form-control" /></td>
-		</tr>
-		<tr>
-			<td>소인 요금</td>
-			<td><input type="number" name="childPrice" id="childPrice" class="form-control" /></td>
+			<td>요금</td>
+			<td><input type="number" name="price" id="price" class="form-control" /></td>
 		</tr>
 		<tr>
 			<td>장소</td>

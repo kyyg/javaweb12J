@@ -60,7 +60,7 @@
 				<td>${vo.totalPrice}</td>	
 				<td>${vo.confirm}</td>	
 				<c:if test="${vo.confirm == 'OK'}">
-					<td><a href="#">리뷰 작성</a></td>	
+					<td><a href="${ctp}/ReviewInput.rv?idx=${vo.idx}">리뷰 작성</a></td>	
 				</c:if>
 				<c:if test="${vo.confirm == 'NO'}">
 					<td></td>	

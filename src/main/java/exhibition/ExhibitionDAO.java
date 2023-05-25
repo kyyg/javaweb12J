@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import conn.GetConn;
+import review.ReviewVO;
 public class ExhibitionDAO {
 
 	GetConn getConn = GetConn.getInstance();
@@ -140,6 +141,7 @@ public class ExhibitionDAO {
 			getConn.pstmtClose();
 		}
 	}
+
 
 		
 	

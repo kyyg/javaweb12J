@@ -22,8 +22,6 @@ public class ReservationPayOkCommand implements ExhibitionInterface {
 		String title = request.getParameter("title")==null ? "" : request.getParameter("title");
 		int peopleNum = request.getParameter("peopleNum")==null ? 0 : Integer.parseInt(request.getParameter("peopleNum"));
 		int totalPrice = request.getParameter("totalPrice")==null ? 0 : Integer.parseInt(request.getParameter("totalPrice"));
-		System.out.println("ReservationPayOkCommand1 : " + exIdx + "/" + reDate + "/" +peopleNum+ "/" +totalPrice+ "/" +title);
-		
 		
 		// 개인 예약번호 
 		Date now = new Date();
@@ -37,7 +35,7 @@ public class ReservationPayOkCommand implements ExhibitionInterface {
 		int reCntPlus = reCnt + 1;
 		String reNum = strNow + "-" + exIdx + "-0" + reCntPlus;
 		
-		//vo.setReCnt(reCntPlus); 예약카운트 증가
+		// 예약카운트 증가
 		dao.setReCntPlus(vo.getIdx());
 		
 		String confirmDate = vo.getEndDate().substring(0,10);
@@ -54,7 +52,6 @@ public class ReservationPayOkCommand implements ExhibitionInterface {
 		request.setAttribute("totalPrice", totalPrice);
 		
 		if(res == 1) {
-			System.out.println("ReservationPayOkCommand2 : " + exIdx + "/" + reDate + "/" +peopleNum+ "/" +totalPrice+ "/" +title);
 			request.setAttribute("msg", "결제가 완료되었습니다.");
 			request.setAttribute("url", request.getContextPath()+"/ReservationComplete.ex");
 		}

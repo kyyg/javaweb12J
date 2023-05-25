@@ -26,19 +26,6 @@
 					<td colspan="2">결제가 완료되었습니다.</td>
 					<hr/>
 				</tr>
-				<tr>
-				<td>
-					<pre>
-					구매자 : ${mid}
-					주문번호 : ${reNum}
-					예약날짜 : ${reDate}
-					예약전시 : ${title}
-					인원 : ${peopleNum}
-					총금액 : ${totalPrice}
-					</pre>
-				</td>
-				</tr>
-				<tr>
 					<td class="mb-5 pb-5"></td>
 				</tr>
 			</table>

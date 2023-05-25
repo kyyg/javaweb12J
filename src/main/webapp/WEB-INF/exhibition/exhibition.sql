@@ -11,7 +11,7 @@ create table exhibition (
 	place varchar(100),
 	poster varchar(100),
 	content text,
-	part char(5) default 'open',
+	part char(5) default '전시',
 	reCnt int default 0
 );
 
@@ -71,5 +71,20 @@ create table reservation(
 desc reservation;
 drop table reservation;
 
+
+create table review (
+	idx int not null auto_increment primary key,
+	reIdx int not null,
+	mid varchar(20) not null,
+	title varchar(100) not null,
+	content text not null,
+	wDate datetime default now() not null,
+	pwd varchar(100) not null,
+	photo varchar(100),
+	good int default 0,
+	foreign key(reIdx) references reservation(idx)
+);
+
+desc review;
 
 

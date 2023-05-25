@@ -98,8 +98,8 @@ display : grid;
         <span class="rec">
           <div class="rec__img"><a href="#"><img src="${ctp}/images/ex5.jpg" style="width:300px; height:300px; margin-left:90px"></a></div>
           <div class="rec__info">
-            <div class="rec__info1"><a href="#">렘브란트 전시전</a></div>
-            <div class="rec__info2"><a href="#">2023.05~06</a></div>
+            <div class="rec__info1"><a href="#">&nbsp;&nbsp;렘브란트 전시전</a></div>
+            <div class="rec__info2"><a href="#">&nbsp;&nbsp;2023.05~06</a></div>
             <div class="rec__info3">
             </div>    
           </div>
@@ -107,8 +107,8 @@ display : grid;
         <span class="rec">
           <div class="rec__img"><a href="#"><img src="${ctp}/images/ex1.jpg" style="width:300px; height:300px; margin-left:90px"></a></div>
           <div class="rec__info">
-            <div class="rec__info1"><a href="#">알폰스 무하 전시전</a></div>
-            <div class="rec__info2"><a href="#">2023.05~08</a></div>
+            <div class="rec__info1"><a href="#">&nbsp;&nbsp;알폰스 무하 전시전</a></div>
+            <div class="rec__info2"><a href="#">&nbsp;&nbsp;2023.05~08</a></div>
             <div class="rec__info3">
             </div>    
           </div>
@@ -116,8 +116,8 @@ display : grid;
         <span class="rec">
           <div class="rec__img"><a href="#"><img src="${ctp}/images/ex4.jpg" style="width:300px; height:300px; margin-left:90px"></a></div>
           <div class="rec__info">
-            <div class="rec__info1"><a href="#">모네 전시전</a></div>
-            <div class="rec__info2"><a href="#">2023.05~07</a></div>
+            <div class="rec__info1"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;모네 전시전</a></div>
+            <div class="rec__info2"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;2023.05~07</a></div>
             <div class="rec__info3">
             </div>    
           </div>

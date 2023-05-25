@@ -9,6 +9,12 @@
   <title>memberLogin.jsp</title>
   <jsp:include page="/include/bs4.jsp" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap');
+  
+  	*{
+  	font-family: 'Noto Serif KR', serif;
+  	}
+  
   	body{
   	background-image: url("images/ex4.jpg");
   	background-size: 100%;
@@ -37,13 +43,13 @@
 		    <div class="form-group m-0 p-0">
 		      <label for="mid">ID</label>
 		      <input type="text" class="form-control" name="mid" id="mid" value="${mid}" placeholder="아이디를 입력하세요." required autofocus />
-		      <div class="valid-feedback">Ok!!!</div>
+		      <div class="valid-feedback">Ok</div>
 		      <div class="invalid-feedback">아이디를 입력해 주세요.</div>
 		    </div>
 		    <div class="form-group m-0 pb-3">
 		      <label for="pwd">PASSWORD</label>
 		      <input type="password" class="form-control" name="pwd" id="pwd" value="1234" placeholder="Enter email" required />
-		      <div class="valid-feedback">Ok!!!</div>
+		      <div class="valid-feedback">Ok</div>
 		      <div class="invalid-feedback">비밀번호를 입력해 주세요.</div>
 		    </div>
 		    <div class="row" style="font-size:12px">

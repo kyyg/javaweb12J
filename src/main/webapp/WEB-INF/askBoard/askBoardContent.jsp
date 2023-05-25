@@ -188,6 +188,7 @@
         <a href="javascript:goodCheck()">
           <c:if test="${sSw == '1'}"><font color="#f00" size="5">♥</font></c:if>
           <c:if test="${sSw != '1'}"><font color="#000" size="5">♥</font></c:if>
+        </a>
     	</td>
     </tr>
   </table>
@@ -197,7 +198,8 @@
     <c:if test="${flag != 'search' && flag != 'searchMember'}"><input type="button" value="목록으로" onclick="location.href='${ctp}/AskBoardList.ask?pag=${pag}&pageSize=${pageSize}';" class="btn btn-light"/></c:if>
     &nbsp;
   </div>
-
+  <p><br/></p>
+  
   <!-- 댓글 리스트보여주기 -->
   <div class="container">
     <table class="table table-hover text-left">
@@ -205,23 +207,24 @@
         <th> &nbsp;작성자</th>
         <th>댓글내용</th>
         <th>작성일자</th>
-        <th>접속IP</th>
+        <th></th>
       </tr>
       <c:forEach var="replyVo" items="${replyVos}" varStatus="st">
         <tr>
-          <td class="text-center">${replyVo.nickName}
-            <c:if test="${sMid == replyVo.mid || sLevel == 0}">
-              (<a href="javascript:replyDelete(${replyVo.idx})" title="댓글삭제"><b>x</b></a>)
+          <td class="text-center">${replyVo.nickName}</td>
+          <td class="text-center">${fn:replace(replyVo.content, newLine, "<br/>")}</td>
+          <td class="text-center">${fn:substring(replyVo.wDate,0,10)}</td>
+          <td>
+             <c:if test="${sMid == replyVo.mid || sLevel == 0}">
+              <a href="javascript:replyDelete(${replyVo.idx})" title="댓글삭제"><b>삭제</b></a>
             </c:if>
           </td>
-          <td>${fn:replace(replyVo.content, newLine, "<br/>")}</td>
-          <td class="text-center">${fn:substring(replyVo.wDate,0,10)}</td>
-          <td class="text-center">${replyVo.hostIp}</td>
         </tr>
       </c:forEach>
     </table>
   </div>
-  
+
+<c:if test="${sLevel == 0 || sLevel == 1}">
   <!-- 댓글 입력창 -->
   <form name="replyForm">
   	<table class="table tbale-center">
@@ -238,6 +241,7 @@
   	  </tr>
   	</table>
   </form>
+</c:if>
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp" />
