@@ -37,13 +37,30 @@ public class AdminDAO {
 	}
 
 //회원 티켓 사용여부 조정
-	public String setReservationConfirmChange(String mid, String confirm) {
+	public String setReservationConfirmChange(int idx, String confirm) {
 		String res = "0";
 		try {
-			sql = "update reservation set confirm = ? where mid = ?";
+			sql = "update reservation set confirm = ? where idx = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, confirm);
-			pstmt.setString(2, mid);
+			pstmt.setInt(2, idx);
+			pstmt.executeUpdate();
+			res = "1";
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			getConn.pstmtClose();
+		}
+		return res;
+	}
+
+	public String setExhibitionPartChange(int idx, String part) {
+		String res = "0";
+		try {
+			sql = "update exhibition set part = ? where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, part);
+			pstmt.setInt(2, idx);
 			pstmt.executeUpdate();
 			res = "1";
 		} catch (SQLException e) {

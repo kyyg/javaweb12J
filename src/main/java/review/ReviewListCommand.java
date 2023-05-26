@@ -34,10 +34,20 @@ public class ReviewListCommand implements ReviewInterface {
 		// 페이지에 리뷰 자료 + 예약한 자료에 대해서도 같이 써야함.
 		// 예약한 자료는 리뷰에 속한 reIdx를 가져와서 자료를 가져와야함.
 		ArrayList<ReviewVO> vos = dao.getReviewList(startIndexNo, pageSize);
-		ReservationDAO dao2 = new ReservationDAO();
 		
+
+		 ReservationDAO dao2 = new ReservationDAO(); 
+		 		  
+		 
+		 ReservationVO vo2 = new ReservationVO();
+		 for(int i=0; i<vos.size(); i++) {
+			 vo2 = dao2.getReservationInfo(vos.get(i).getReIdx());
+		 } 		
+		 
+		 
 		
 		request.setAttribute("vos", vos);
+		request.setAttribute("vo2", vo2);
 		
 		request.setAttribute("pag", pag);
 		request.setAttribute("totPage", totPage);

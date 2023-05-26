@@ -45,7 +45,7 @@
   <h2 class="text-center">NOTICE</h2>
   <table class="table table-borderless">
     <tr>
-      <td><c:if test="${sLevel == 0}"><a href="${ctp}/AdminBoardInput.ad" class="btn btn-light btn-sm">공지 작성</a></c:if></td>
+      <td><c:if test="${sLevel == 0}"><a href="${ctp}/AdminBoardInput.ad" class="btn btn-outline-dark btn-sm">공지 작성</a></c:if></td>
       <td class="text-right">
         <!-- 한페이지 분량처리 -->
         <select name="pageSize" id="pageSize" onchange="pageCheck()">

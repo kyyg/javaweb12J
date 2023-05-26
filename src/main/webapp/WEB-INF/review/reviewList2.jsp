@@ -31,11 +31,6 @@
     	}
     }
   </script>
-  <style>
-  	th{
-  	background-color : #eee;
-  	}
-  </style>
 </head>
 <body>
 <jsp:include page="/include/header.jsp" />
@@ -56,28 +51,24 @@
       </td>
     </tr>
   </table>
-    <c:forEach var="vo" items="${vos}" varStatus="st">
-    <div class="mt-4">번호: ${st.count}</div>
-  <table class="table table-bordered text-center mb-5">
-    <tr>
+  <table class="table table-hover text-center">
+    <tr class="table-dark text-dark">
+      <th>번호</th>
       <th>작성자</th>
-      <td>${vo.mid}</td>
-      <th>올린날짜</th>
-      <td>${fn:substring(vo.wDate,0,fn:length(vo.wDate)-2)}</td>
-    </tr>
-    <tr>
       <th>제목</th>
-      <td colspan="3" class="text-left">${vo.title}</td>
+      <th>작성날짜</th>
     </tr>
-    <tr>
-      <th>내용</th>
-      <td colspan="3" class="text-left" style="height:280px;" class="text-left">${fn:replace(vo.content, newLine, '<br/>')}  
-      <div class="text-center"></div>
-      </td>
-    </tr>
+    <c:forEach var="vo" items="${vos}" varStatus="st">
+      <tr>
+        <td>${curScrStartNo}</td>
+				<td>${vo.mid}</td>
+				<td><a href="${ctp}/ReviewContent.rv?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a></td>
+				<td>${vo.wDate}</td>
+      </tr>
+      <c:set var="curScrStartNo" value="${curScrStartNo - 1}"/>
+    </c:forEach>
     <tr><td colspan="6" class="m-0 p-0"></td></tr>
   </table>
-    </c:forEach>
   
   <!-- 블록 페이징 처리 -->
   <div class="text-center m-4">

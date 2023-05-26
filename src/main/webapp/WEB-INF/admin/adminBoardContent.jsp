@@ -26,7 +26,11 @@
 <div class="container">
   <h2 class="text-center">공지 상세보기</h2>
   <br/>
-  <table class="table table-borderless m-0 p-0">
+  <table class="table table-borderless m-0 p-0 text-right">
+		<c:if test="${sMid == vo.mid || sLevel == 0}">
+			<input type="button" value="수정하기" onclick="location.href='${ctp}/BoardUpdate.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark btn-sm mb-3"/> &nbsp;
+			<input type="button" value="삭제하기" onclick="boardDelete()" class="btn btn-outline-dark btn-sm mb-3"/>
+		</c:if>
   </table>
   <table class="table table-bordered">
     <tr>
@@ -47,14 +51,9 @@
     </tr>
     <tr>
       <td colspan="4" class="text-center">
-        <c:if test="${flag == 'search'}"><input type="button" value="돌아가기" onclick="location.href='${ctp}/BoardSearch.bo?search=${search}&searchString=${searchString}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-primary"/></c:if>
-        <c:if test="${flag == 'searchMember'}"><input type="button" value="돌아가기" onclick="location.href='${ctp}/BoardSearchMember.bo?pag=${pag}&pageSize=${pageSize}';" class="btn btn-primary"/></c:if>
-        <c:if test="${flag != 'search' && flag != 'searchMember'}"><input type="button" value="목록으로" onclick="location.href='${ctp}/AdminBoardList.ad?pag=${pag}&pageSize=${pageSize}';" class="btn btn-light"/></c:if>
-        &nbsp;
-      	<c:if test="${sMid == vo.mid || sLevel == 0}">
-        	<input type="button" value="수정하기" onclick="location.href='${ctp}/BoardUpdate.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-warning"/> &nbsp;
-        	<input type="button" value="삭제하기" onclick="boardDelete()" class="btn btn-danger"/>
-      	</c:if>
+        <c:if test="${flag == 'search'}"><input type="button" value="돌아가기" onclick="location.href='${ctp}/BoardSearch.bo?search=${search}&searchString=${searchString}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark"/></c:if>
+        <c:if test="${flag == 'searchMember'}"><input type="button" value="돌아가기" onclick="location.href='${ctp}/BoardSearchMember.bo?pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark"/></c:if>
+        <c:if test="${flag != 'search' && flag != 'searchMember'}"><input type="button" value="목록으로" onclick="location.href='${ctp}/AdminBoardList.ad?pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark"/></c:if>
       </td>
     </tr>
   </table>
@@ -65,10 +64,10 @@
 	    <tr>
 	      <td>
 	        <c:if test="${nextVo.nextIdx != 0}">
-	        	☝ <a href="${ctp}/AdminBoardContent.ad?idx=${nextVo.nextIdx}&pag=${pag}&pageSize=${pageSize}">다음글 : ${nextVo.nextTitle}</a><br/>
+	        	△ <a href="${ctp}/AdminBoardContent.ad?idx=${nextVo.nextIdx}&pag=${pag}&pageSize=${pageSize}">다음글 : ${nextVo.nextTitle}</a><br/>
 	        </c:if>
 	        <c:if test="${preVo.preIdx != 0}">
-	        	👇 <a href="${ctp}/AdminBoardContent.ad?idx=${preVo.preIdx}&pag=${pag}&pageSize=${pageSize}">이전글 : ${preVo.preTitle}</a><br/>
+	        	▽ <a href="${ctp}/AdminBoardContent.ad?idx=${preVo.preIdx}&pag=${pag}&pageSize=${pageSize}">이전글 : ${preVo.preTitle}</a><br/>
 	        </c:if>
 	      </td>
 	    </tr>

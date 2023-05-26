@@ -131,31 +131,32 @@ nav li {
 <nav id="mainnav" class="navbar-light bg-white">
   <ul class="nav justify-content-center">
 	 <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn mr-2" >EXHIBITION</div>
+	    <div class="nav-link dropbtn mr-5">EXHIBITION</div>
 	    <div class="dropdown-menu dropdown-content">
-	      <a class="dropdown-item" href="${pageContext.request.contextPath}/ExhibitionList.ex">EXHIBITION</a>
-		    <a class="dropdown-item" href="${ctp}/ReviewList.rv">REVIEW</a>
+	      <a class="dropdown-item text-center" href="${pageContext.request.contextPath}/ExhibitionList.ex">EXHIBITION</a>
+		    <a class="dropdown-item text-center" href="${ctp}/ReviewList.rv">REVIEW</a>
 	   	</div>
 	  </li>
 	   <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn ml-4 mr-2">SHOP</div>
+	    <div class="nav-link dropbtn ml-4 mr-5 text-center">&nbsp;&nbsp;STORE</div>
 	    <div class="dropdown-menu dropdown-content">
-	      <a class="dropdown-item" href="#">GIFT</a>
-		    <a class="dropdown-item" href="#">ETC</a>
+	      <a class="dropdown-item text-center" href="#">DIGITAL</a>
+		    <a class="dropdown-item text-center" href="#">POSTER</a>
+		    <a class="dropdown-item text-center" href="#">LIVING</a>
 	   </div>
 	  </li>
 	  <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn ml-3 mr-3">PLACE</div>
+	    <div class="nav-link dropbtn ml-3 mr-5">&nbsp;&nbsp;&nbsp;PLACE</div>
 	    <div class="dropdown-menu dropdown-content">
-	      <a class="dropdown-item" href="${ctp}/ExhibitionVisit.ex">ABOUT US</a>
-	      <a class="dropdown-item" href="${ctp}/ExhibitionVisit.ex">VISIT</a>
+	      <a class="dropdown-item text-center" href="${ctp}/ExhibitionVisit.ex">ABOUT US</a>
+	      <a class="dropdown-item text-center" href="${ctp}/ExhibitionVisit.ex">VISIT</a>
 	   </div>
 	   </li>
 	  <li class="nav-item dropdown">
 	    <div class="nav-link dropbtn ml-3">SERVICE</div>
 	    <div class="dropdown-menu dropdown-content">
-	      <a class="dropdown-item" href="${pageContext.request.contextPath}/BoardList.bo">NOTICE</a>
-	      <a class="dropdown-item" href="${ctp}/AskBoardList.ask">Q&A</a>
+	      <a class="dropdown-item text-center" href="${pageContext.request.contextPath}/BoardList.bo">NOTICE</a>
+	      <a class="dropdown-item text-center" href="${ctp}/AskBoardList.ask">Q&A</a>
 	   </div>
 	   </li>
 	</ul>

@@ -132,6 +132,11 @@ public class AdminController extends HttpServlet {
 			command.execute(request, response);
 			return;
 		}
+		else if(com.equals("/AdminExhibitionPartChange")) {
+			command = new AdminExhibitionPartChangeCommand();
+			command.execute(request, response);
+			return;
+		}
 		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

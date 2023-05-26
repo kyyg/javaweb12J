@@ -44,6 +44,38 @@
   	let ans = confirm("현재 게시물을 삭제하시겠습니까?");
   	if(ans) location.href = "${ctp}/ExhibitionDelete.gu?idx="+idx;
   }
+  
+  function partChangeCheck(e){
+	  let ans = confirm("선택한 전시의 상태를 변경하시겠습니까?");
+	  	if(!ans) {
+	  		location.reload();
+	  		return false;
+	  	}
+	  	
+	  	let items = e.value.split("/");
+	  	let query = {
+	  			part   : items[0],
+	  			idx : items[1]
+	  	}
+	  	
+	  	$.ajax({
+	  		type   : "post",
+	  		url    : "${ctp}/AdminExhibitionPartChange.ad",
+	  		data   : query,
+	  		success:function(res) {
+	  			if(res == "1") {
+	  				alert("전시 상태가 변경되었습니다.");
+	  				location.reload();
+	  			}
+	  			else alert("전시 상태 변경에 실패하였습니다.");
+	  		},
+	  		error : function() {
+	  			alert("전송 오류");
+	  		}
+	  	});
+	  
+  }
+  
 </script>
 <style>
  .info{
@@ -61,7 +93,7 @@
  <table class="table table-borderless">
   <tr class="text-left">
     <td>
-      <select name="pageSize" id="pageSize" onchange="pageCheck()">
+      <select name="pageSize" id="pageSize" onchange="pageCheck()" class="ml-2">
         <option <c:if test="${pageSize == 3}">selected</c:if>>3</option>
         <option <c:if test="${pageSize == 5}">selected</c:if>>5</option>
         <option <c:if test="${pageSize == 10}">selected</c:if>>10</option>
@@ -69,7 +101,7 @@
         <option <c:if test="${pageSize == 20}">selected</c:if>>20</option> 
       </select>
     </td>
-    <td style="text-align:right;"><a href="${ctp}/AdminExhibitionInput.ad" class="btn btn-light btn-sm">전시 등록</a></td>
+    <td style="text-align:right;"><a href="${ctp}/AdminExhibitionInput.ad" class="btn btn-outline-dark btn-sm mr-2">전시 등록</a></td>
   </tr>
 </table>
       
@@ -83,6 +115,7 @@
 	  		<th>전시 종료날짜</th>
 	  		<th>가격</th>
 	  		<th>장소</th>
+	  		<th>전시현황</th>
 	  	</tr>
 			<c:forEach var="vo" items="${vos}" varStatus="st">
 			<tr class="text-center">
@@ -93,6 +126,12 @@
 				<td>${fn:substring(vo.endDate,0,10)}</td>	
 				<td>${vo.price}</td>	
 				<td>${vo.place}</td>	
+				<td>
+				<select name="part" id="part" onchange="partChangeCheck(this)">
+					<option value="전시/${vo.idx}" ${vo.part == '전시' ? "selected" : ""}>전시</option>
+					<option value="마감/${vo.idx}" ${vo.part == '마감' ? "selected" : ""}>마감</option>
+				</select>
+				</td>	
 				<tr>				
 					<td class="m-0 p-0"></td>
 				</tr>

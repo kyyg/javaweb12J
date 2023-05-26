@@ -55,7 +55,7 @@
   	let items = e.value.split("/");
   	let query = {
   			confirm : items[0],
-  			mid   : items[1]
+  			idx   : items[1]
   	}
   	
   	$.ajax({
@@ -128,8 +128,8 @@
 				<td>${vo.totalPrice}</td>
 				<td>
 					<select name="levelShow" id="levelShow" onchange="confirmChangeCheck(this)">
-            <option value="NO/${vo.mid}" ${vo.confirm=='NO' ? "selected" : ""}>NO</option>
-	      	  <option value="OK/${vo.mid}" ${vo.confirm=='OK' ? "selected" : ""}>OK</option>
+            <option value="NO/${vo.idx}" ${vo.confirm=='NO' ? "selected" : ""}>NO</option>
+	      	  <option value="OK/${vo.idx}" ${vo.confirm=='OK' ? "selected" : ""}>OK</option>
 					</select>
 				</td>
 				<tr>			
