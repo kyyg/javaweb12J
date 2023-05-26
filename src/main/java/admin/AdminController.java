@@ -122,6 +122,17 @@ public class AdminController extends HttpServlet {
 			viewPage = "/include/message.jsp";
 		}
 		
+		else if(com.equals("/AdminReservationList")) {
+			command = new AdminReservationListCommand();
+			command.execute(request, response);
+			viewPage += "/adminReservationList.jsp";
+		}
+		else if(com.equals("/AdminReservationConfirmChange")) {
+			command = new AdminReservationConfirmChangeCommand();
+			command.execute(request, response);
+			return;
+		}
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

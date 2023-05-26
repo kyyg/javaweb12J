@@ -30,7 +30,7 @@
   <hr/>
   <p><a href="${ctp}/AdminExhibitionList.ad" target="adminContent">전시 목록</a></p>
   <hr/>
-  <p><a href="#" target="adminContent">전시 예약 목록</a></p>
+  <p><a href="${ctp}/AdminReservationList.ad" target="adminContent">전시 예약목록</a></p>
   <hr/>
   <p><a href="#" target="adminContent">상품 목록</a></p>
   <hr/>

@@ -126,6 +126,57 @@ public class ReservationDAO {
 		}
 		return res;
 	}
+
+	
+	//총 레코드 건수 구하기
+	public int getTotRecCnt() {
+		int totRecCnt = 0;
+		try {
+			sql = "select count(idx) as cnt from reservation";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			totRecCnt = rs.getInt("cnt");
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			getConn.rsClose();
+		}
+		return totRecCnt;
+	}
+	
+
+	public ArrayList<ReservationVO> getReservationList(int startIndexNo, int pageSize) {
+		ArrayList<ReservationVO> vos = new ArrayList<>();
+		try {
+			sql = "select * from reservation order by idx desc limit ?,?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startIndexNo);
+			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				vo = new ReservationVO();
+				vo.setIdx(rs.getInt("idx"));
+				vo.setReNum(rs.getString("reNum"));
+				vo.setExIdx(rs.getInt("exIdx"));
+				vo.setTitle(rs.getString("title"));
+				vo.setMid(rs.getString("mid"));
+				vo.setwDate(rs.getString("wDate"));
+				vo.setReDate(rs.getString("reDate"));
+				vo.setPeopleNum(rs.getInt("peopleNum"));
+				vo.setTotalPrice(rs.getInt("totalPrice"));
+				vo.setConfirm(rs.getString("confirm"));
+				vo.setConfirmDate(rs.getString("confirmDate"));	
+				vos.add(vo);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			getConn.rsClose();
+		}
+		return vos;
+	}
 	
 	
 	
