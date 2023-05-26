@@ -56,14 +56,7 @@
 <jsp:include page="/include/header.jsp" />
 <p><br/></p>
   
-    
-  <table class="table table-borderless mb-0 p-0">
-    <tr>
-      <c:if test="${sLevel == 0}">
-      <td style="text-align:right;"><a href="${ctp}/ExhibitionInput.ex" class="btn btn-light btn-sm">전시등록</a></td>
-    	</c:if>
-  </table>
-  <table class="table table-borderless mb-5">
+ <table class="table table-borderless mb-5">
     <tr>
       <td>
         <select name="pageSize" id="pageSize" onchange="pageCheck()">

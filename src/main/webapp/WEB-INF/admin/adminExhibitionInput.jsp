@@ -19,18 +19,12 @@
   
   
   </script>
-  <style>
-  	th{
-  	background-color:#eee;
-  	}
-  </style>
 </head>
 <body>
-<jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container" style="width:800px">
 	<h3 class="text-center mb-5">전시회 등록</h3>
-	<form name="myform" method="post" action="${ctp}/ExhibitionInputOk.ex" enctype="multipart/form-data">
+	<form name="myform" method="post" action="${ctp}/AdminExhibitionInputOk.ad" enctype="multipart/form-data">
 	<table class="table table-bordered">
 		<tr>
 			<th>전시회 제목</th>
@@ -67,11 +61,10 @@
 	</table>
 	<div class="text-center mt-5">
 		<input type="button" value="등록" onclick="fCheck()" class="btn btn-light"/> &nbsp;
-		<input type="button" value="돌아가기" onclick="location.href='${ctp}/ExhibitionList.ex';" class="btn btn-light"/>
+		<input type="button" value="돌아가기" onclick="location.href='${ctp}/AdminExhibitionList.ad';" class="btn btn-light"/>
 	</div>
 	</form>
 </div>
 <p><br/></p>
-<jsp:include page="/include/footer.jsp" />
 </body>
 </html>

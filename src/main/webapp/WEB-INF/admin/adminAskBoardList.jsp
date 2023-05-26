@@ -1,0 +1,99 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="ctp" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>boardList.jsp</title>
+  <jsp:include page="/include/bs4.jsp" />
+  <script>
+    'use strict';
+    
+    function searchCheck() {
+    	let searchString = $("#searchString").val();
+    	
+    	if(searchString.trim() == "") {
+    		alert("찾고자하는 검색어를 입력하세요!");
+    		searchForm.searchString.focus();
+    	}
+    	else {
+    		searchForm.submit();
+    	}
+    }
+  </script>
+  <style>
+ 	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap');
+ 	 *{
+ 	 font-family: 'Noto Serif KR', serif;
+ 	 }
+ 	 
+	</style>
+</head>
+<body>
+<p><br/></p>
+<div class="container">
+  <h2 class="text-center">ASK</h2>
+	<table class="table table-borderless">
+		<tr class="mb-3 text-right">
+			<td class="mb-5"><c:if test="${sLevel <= 1}"><a href="${ctp}/AdminAskBoardInput.ad" class="btn btn-light btn-sm">문의글 등록</a></c:if></td>
+		</tr>
+	</table>
+  <table class="table table-hover text-center">
+    <tr class="table-dark text-dark">
+      <th>번호</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>날짜일</th>
+      <th>조회수</th>
+    </tr>
+    <c:forEach var="vo" items="${vos}" varStatus="st">
+      <tr>
+        <td>${curScrStartNo}</td>
+        <td class="text-center">
+          <c:if test="${vo.openSw == 'OK' || sLevel == 0 || sMid == vo.mid}">
+	          <a href="${ctp}/AdminAskBoardContent.ad?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a>
+	          <c:if test="${vo.hour_diff <= 24}"><span class="badge badge-info">NEW</span></c:if>
+          </c:if>
+          <c:if test="${vo.openSw != 'OK' && sLevel != 0 && sMid != vo.mid}">
+          	${vo.title}
+          </c:if>
+          <c:if test="${vo.replyCount != 0}">(${vo.replyCount})</c:if>
+        </td>
+        <td>${vo.nickName}</td>
+        <td>
+          <!-- 1일(24시간) 이내는 시간만 표시, 이후는 날짜와 시간을 표시 : 2023-05-04 10:35:25 -->
+          <!-- 단(24시간안에 만족하는 자료), 날짜가 오늘날짜만 시간으로표시하고, 어제날짜는 날짜로 표시하시오. -->
+          <c:if test="${vo.hour_diff > 24}">${fn:substring(vo.wDate,0,10)}</c:if>
+          <c:if test="${vo.hour_diff <= 24}">
+            ${vo.day_diff == 0 ? fn:substring(vo.wDate,11,19) : fn:substring(vo.wDate,0,16)}
+          </c:if>
+        </td>
+        <td>${vo.readNum}</td>
+      </tr>
+      <c:set var="curScrStartNo" value="${curScrStartNo - 1}"/>
+    </c:forEach>
+    <tr><td colspan="6" class="m-0 p-0"></td></tr>
+  </table>
+  
+  <!-- 검색기 처리 -->
+  <div class="container text-center">
+    <form name="searchForm" method="post" action="${ctp}/BoardSearch.bo">
+      <b>검색 : </b>
+      <select name="search">
+        <option value="title" selected>글제목</option>
+        <option value="nickName">글쓴이</option>
+        <option value="content">글내용</option>
+      </select>
+      <input type="text" name="searchString" id="searchString"/>
+      <input type="button" value="검색" onclick="searchCheck()" class="btn btn-light btn-sm"/>
+      <input type="hidden" name="pag" value="${pag}"/>
+      <input type="hidden" name="pageSize" value="${pageSize}"/>
+    </form>
+  </div>
+</div>
+<p><br/></p>
+</body>
+</html>

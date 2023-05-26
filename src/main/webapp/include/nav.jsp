@@ -33,13 +33,13 @@ nav li {
 	margin: 0%;
 	left:0%;
 }
-#title{
+#homeTitle{
 	font-size: 35px;
 }
-#title a{
+#homeTitle a{
 	color : black;
 }
-#title a:hover{
+#homeTitle a:hover{
 	text-decoration:none;
 	color: red;
 }
@@ -120,7 +120,7 @@ nav li {
 
 	<div class="container text-center text-dark mt-1" class="title">
 		<br/><br/>
-		<span id="title"><a href="http://192.168.50.91:9090/javaweb12J/"><h1>GROUND SAWSAW</h1></a></span>
+		<span id="homeTitle"><a href="http://192.168.50.91:9090/javaweb12J/"><h1>GROUND SAWSAW</h1></a></span>
 		<br/><br/>
 	</div>
 
