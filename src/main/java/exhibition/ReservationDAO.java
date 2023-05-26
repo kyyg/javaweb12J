@@ -80,7 +80,7 @@ public class ReservationDAO {
 	public ArrayList<ReservationVO> getReservationList(String mid) {
 		ArrayList<ReservationVO> vos = new ArrayList<>();
 		try {
-			sql = "select * from reservation where mid=?";
+			sql = "select * from reservation where mid=? order by idx desc";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			rs = pstmt.executeQuery();
@@ -145,7 +145,7 @@ public class ReservationDAO {
 		return totRecCnt;
 	}
 	
-
+	// 페이징~ 예약 목록 가져오기
 	public ArrayList<ReservationVO> getReservationList(int startIndexNo, int pageSize) {
 		ArrayList<ReservationVO> vos = new ArrayList<>();
 		try {

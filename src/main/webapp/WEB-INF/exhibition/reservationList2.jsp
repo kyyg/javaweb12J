@@ -36,12 +36,11 @@
 <body>
 <jsp:include page="/include/header.jsp" />
 <p><br/></p>
-<div class="container text-center text-align:center mb-5">
-	<h3 class="text-center mb-5">나의 예약현황</h3>
-	  <table class="table table-borderless table-hover mb-5" style="font-size:12px">
+<div class="container text-center text-align:center">
+	<h3 class="text-center mb-4">나의 예약현황</h3>
+	  <table class="table table-borderless table-hover" style="font-size:12px">
 	  	<tr class="table-dark text-dark text-center">
 	  		<th>번호</th>
-	  		<th>예약번호</th>
 	  		<th>결제날짜</th>
 	  		<th>전시</th>
 	  		<th>예약날짜</th>
@@ -54,7 +53,6 @@
 			<c:forEach var="vo" items="${vos}" varStatus="st">
 			<tr class="text-center">
 				<td>${vo.idx}</td>	
-				<td>${vo.reNum}</td>	
 				<td>${fn:substring(vo.wDate,0,19)}</td>	
 				<td>${vo.title}</td>	
 				<td>${vo.reDate}</td>	
@@ -74,6 +72,9 @@
 			</tr>	   
  		 </c:forEach>
 	  </table>
+	  <div class="container text-center">
+	  	<input type="button" onclick="${ctp}/MemberMain.mem" value="이전화면으로" class="btn btn-light">
+	  </div>
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp" />

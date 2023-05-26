@@ -9,9 +9,11 @@
   <title>GROUND SAWSAW</title>
   <jsp:include page="/include/bs4.jsp" />
   <style>
- 	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400&family=Noto+Serif+KR:wght@400;600&display=swap');
+
  	 *{
- 	 font-family: 'Noto Serif KR', serif;
+ 	 font-family: 'Kanit', sans-serif;
+	 font-family: 'Noto Serif KR', serif;
  	 }
 	</style>
 </head>

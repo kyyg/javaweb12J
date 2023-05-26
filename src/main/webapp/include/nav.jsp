@@ -131,22 +131,21 @@ nav li {
 <nav id="mainnav" class="navbar-light bg-white">
   <ul class="nav justify-content-center">
 	 <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn mr-3" >EXHIBITION</div>
+	    <div class="nav-link dropbtn mr-2" >EXHIBITION</div>
 	    <div class="dropdown-menu dropdown-content">
-	      <a class="dropdown-item" href="${pageContext.request.contextPath}/ExhibitionList.ex">OPEN</a>
-		    <a class="dropdown-item" href="#">CLOSE</a>
+	      <a class="dropdown-item" href="${pageContext.request.contextPath}/ExhibitionList.ex">EXHIBITION</a>
 		    <a class="dropdown-item" href="${ctp}/ReviewList.rv">REVIEW</a>
 	   	</div>
 	  </li>
 	   <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn ml-3 mr-2">SHOP</div>
+	    <div class="nav-link dropbtn ml-4 mr-2">SHOP</div>
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item" href="#">GIFT</a>
 		    <a class="dropdown-item" href="#">ETC</a>
 	   </div>
 	  </li>
 	  <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn ml-3 mr-2">PLACE</div>
+	    <div class="nav-link dropbtn ml-3 mr-3">PLACE</div>
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item" href="${ctp}/ExhibitionVisit.ex">ABOUT US</a>
 	      <a class="dropdown-item" href="${ctp}/ExhibitionVisit.ex">VISIT</a>
